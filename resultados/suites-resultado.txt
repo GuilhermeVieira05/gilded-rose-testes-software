@@ -1,0 +1,126 @@
+PASS test/jest/suite-3-cot.spec.ts
+  R1 — Item normal
+    √ R1-S1 [normal] decrementa sellIn em 1 a cada dia (8 ms)
+    √ R1-Q1 [normal] diminui quality em 1 quando sellIn > 0
+    √ R1-Q2 [boundary] quality=1 e sellIn positivo → quality chega exatamente a 0
+    √ R1-Q3 [beyond] quality=0 e sellIn positivo → permanece em 0 (floor)
+    √ R1-Q4 [boundary] sellIn=0 causa degradação dupla de quality (1 ms)
+    √ R1-Q5 [boundary] sellIn=1 causa degradação simples (último dia antes de vencer)
+    √ R1-Q6 [normal] sellIn=-1 causa degradação dupla (já vencido)
+    √ R1-Q7 [boundary] quality=1 vencido → não ultrapassa 0 com degradação dupla (1 ms)
+    √ R1-Q8 [beyond] quality=0 vencido → permanece em 0
+  R2 — Aged Brie
+    √ R2-S1 [normal] decrementa sellIn normalmente
+    √ R2-Q1 [normal] aumenta quality em 1 antes do prazo (1 ms)
+    √ R2-Q2 [boundary] sellIn=1 (último dia) → aumento simples
+    √ R2-Q3 [boundary] sellIn=0 (dia do vencimento) → aumento duplo
+    √ R2-Q4 [beyond] sellIn=-1 (já vencido) → aumento duplo
+    √ R2-Q5 [boundary] quality=49 antes do prazo → sobe para exatamente 50
+    √ R2-Q6 [boundary] quality=50 antes do prazo → permanece em 50 (cap) (1 ms)
+    √ R2-Q7 [boundary] quality=49 vencido → sobe para 50 e para (cap no 2º aumento)
+    √ R2-Q8 [boundary] quality=48 vencido → sobe 2 → exatamente 50
+    √ R2-Q9 [beyond] quality=50 vencido → permanece em 50 (cap duplo)
+  R3 — Sulfuras, Hand of Ragnaros
+    √ R3-Q1 [normal] quality nunca muda com sellIn positivo
+    √ R3-S1 [normal] sellIn nunca muda com sellIn positivo (1 ms)
+    √ R3-Q2 [boundary] quality imutável quando sellIn=0
+    √ R3-S2 [boundary] sellIn permanece 0 quando inicialmente 0
+    √ R3-Q3 [beyond] quality imutável com sellIn negativo
+    √ R3-S3 [beyond] sellIn permanece negativo (não é decrementado)
+  R4 — Backstage passes to a TAFKAL80ETC concert
+    √ R4-S1 [normal] decrementa sellIn em 1 por dia
+    √ R4-Q1 [normal] sellIn=12 → quality +1 (1 ms)
+    √ R4-Q2 [boundary superior] sellIn=11 → quality +1 (ainda na faixa >10)
+    √ R4-Q3 [boundary] sellIn=10 → quality +2 (entra na faixa ≤10)
+    √ R4-Q4 [normal] sellIn=8 → quality +2
+    √ R4-Q5 [boundary superior] sellIn=6 → quality +2 (última posição da faixa ≤10, >5) (1 ms)
+    √ R4-Q6 [boundary] sellIn=5 → quality +3 (entra na faixa ≤5)
+    √ R4-Q7 [normal] sellIn=3 → quality +3
+    √ R4-Q8 [boundary] sellIn=1 → quality +3 (último dia antes do show)
+    √ R4-Q9 [boundary] sellIn=0 → quality cai para 0 após o show
+    √ R4-Q10 [beyond] sellIn=-1 (já passado) → quality permanece 0
+    √ R4-Q11 [boundary] quality=50 e sellIn=15 → permanece em 50 (cap +1) (1 ms)
+    √ R4-Q12 [boundary] quality=49 e sellIn=15 → sobe para 50 e para
+    √ R4-Q13 [boundary] quality=49 e sellIn=10 → sobe para 50 e para (cap no 2º aumento)
+    √ R4-Q14 [boundary] quality=50 e sellIn=10 → permanece 50 (cap imediato)
+    √ R4-Q15 [boundary] quality=48 e sellIn=5 → sobe para 50 e para (cap no 3º aumento)
+    √ R4-Q16 [boundary] quality=49 e sellIn=5 → sobe para 50 no 1º aumento e para (1 ms)
+    √ R4-Q17 [beyond] quality=50 e sellIn=5 → permanece 50
+  Comportamento acumulado ao longo de múltiplos dias
+    √ item normal chega exatamente a 0 e permanece lá
+    √ Aged Brie atinge o cap 50 e não ultrapassa mesmo com mais dias
+    √ Backstage passes: quality cai para 0 no dia seguinte ao show e permanece 0 (1 ms)
+    √ Sulfuras permanece inalterado após múltiplos dias
+    √ múltiplos itens de tipos diferentes são atualizados de forma independente
+
+PASS test/jest/suite-2-persona.spec.ts
+  Gilded Rose — Suite 2 Persona
+    Item normal
+      √ diminui sellIn em 1 a cada dia (8 ms)
+      √ diminui quality em 1 antes do prazo
+      √ diminui quality em 2 quando sellIn chega a 0 (dia do vencimento)
+      √ diminui quality em 2 quando sellIn já é negativo (vencido) (1 ms)
+      √ quality nunca fica abaixo de 0 antes do prazo
+      √ quality nunca fica abaixo de 0 depois do prazo
+      √ quality não fica negativa quando vale 1 e está vencido
+    Aged Brie
+      √ aumenta quality em 1 antes do prazo (1 ms)
+      √ aumenta quality em 2 quando sellIn chega a 0
+      √ aumenta quality em 2 quando já está vencido
+      √ quality nunca ultrapassa 50 antes do prazo
+      √ quality nunca ultrapassa 50 depois do prazo (1 ms)
+      √ não ultrapassa 50 mesmo quando teria aumento duplo
+      √ diminui sellIn normalmente
+    Sulfuras, Hand of Ragnaros
+      √ nunca altera quality
+      √ nunca altera sellIn (1 ms)
+      √ não altera quality mesmo com sellIn negativo
+      √ não altera sellIn mesmo quando já negativo
+    Backstage passes to a TAFKAL80ETC concert
+      √ aumenta quality em 1 quando sellIn > 10 (1 ms)
+      √ aumenta quality em 1 quando sellIn é exatamente 11
+      √ aumenta quality em 2 quando sellIn é 10
+      √ aumenta quality em 2 quando sellIn é 6
+      √ aumenta quality em 3 quando sellIn é 5
+      √ aumenta quality em 3 quando sellIn é 1 (1 ms)
+      √ quality cai para 0 quando sellIn é 0 (após o show)
+      √ quality permanece 0 quando sellIn já é negativo
+      √ quality nunca ultrapassa 50 com aumento simples
+      √ quality nunca ultrapassa 50 com aumento duplo (sellIn=10)
+      √ quality nunca ultrapassa 50 com aumento triplo (sellIn=5)
+      √ diminui sellIn normalmente
+    Comportamento acumulado ao longo de múltiplos dias
+      √ item normal chega a quality 0 após dias suficientes
+      √ Aged Brie acumula quality até 50 ao longo dos dias
+      √ Backstage passes chegam a 0 após o show e ficam em 0 (1 ms)
+      √ múltiplos itens são atualizados de forma independente
+
+PASS test/jest/suite-1-baseline.spec.ts
+  Gilded Rose — Suite 1 Baseline
+    Item normal
+      √ diminui quality em 1 a cada dia (6 ms)
+      √ diminui sellIn em 1 a cada dia
+      √ quality nunca fica negativa
+      √ quality degrada duas vezes mais rapido apos sellIn chegar a zero
+      √ quality nunca fica negativa apos sellIn expirar (1 ms)
+    Aged Brie
+      √ aumenta quality com o tempo
+      √ quality nao ultrapassa 50
+      √ quality aumenta apos sellIn expirar
+    Sulfuras
+      √ nao altera quality
+      √ nao altera sellIn
+    Backstage passes
+      √ aumenta quality em 1 quando sellIn > 10
+      √ aumenta quality em 2 quando sellIn esta entre 6 e 10
+      √ aumenta quality em 3 quando sellIn esta entre 1 e 5
+      √ quality vai a zero apos o concerto (1 ms)
+      √ quality nao ultrapassa 50
+    multiplos itens
+      √ atualiza todos os itens corretamente
+
+Test Suites: 3 passed, 3 total
+Tests:       98 passed, 98 total
+Snapshots:   0 total
+Time:        2.769 s, estimated 15 s
+Ran all test suites matching /test\\jest\\suite-1-baseline.spec.ts|test\\jest\\suite-2-persona.spec.ts|test\\jest\\suite-3-cot.spec.ts/i.

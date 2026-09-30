@@ -1,0 +1,10 @@
+PASS test/jest/suite-2-persona.spec.ts (13.562 s)
+PASS test/jest/suite-3-cot.spec.ts (13.509 s)
+PASS test/jest/suite-1-baseline.spec.ts (13.581 s)
+
+Test Suites: 3 passed, 3 total
+Tests:       98 passed, 98 total
+Snapshots:   0 total
+Time:        14.506 s
+Ran all test suites matching /test\\jest\\suite-1-baseline.spec.ts|test\\jest\\suite-2-persona.spec.ts|test\\jest\\suite-3-cot.spec.ts/i.
+Test results written to: resultados\suites-resultado.json

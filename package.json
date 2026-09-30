@@ -9,7 +9,13 @@
     "test:jest": "jest",
     "test:jest:watch": "jest --watchAll",
     "test:mocha": "nyc mocha",
-    "test:vitest": "vitest --coverage"
+    "test:vitest": "vitest --coverage",
+    "audit:coverage:suite1": "jest test/jest/suite-1-baseline.spec.ts --coverage --coverageProvider=babel --collectCoverageFrom=app/gilded-rose.ts",
+    "audit:coverage:suite2": "jest test/jest/suite-2-persona.spec.ts --coverage --coverageProvider=babel --collectCoverageFrom=app/gilded-rose.ts",
+    "audit:coverage:suite3": "jest test/jest/suite-3-cot.spec.ts --coverage --coverageProvider=babel --collectCoverageFrom=app/gilded-rose.ts",
+    "audit:coverage:iteracao1": "jest test/jest/suite-1-baseline.spec.ts test/jest/suite-2-persona.spec.ts test/jest/suite-3-cot.spec.ts --coverage --coverageProvider=babel --collectCoverageFrom=app/gilded-rose.ts",
+    "audit:coverage:iteracao2": "jest test/jest/suite-4-estrutural.spec.ts --coverage --coverageProvider=babel --collectCoverageFrom=app/gilded-rose.ts",
+    "audit:decisao": "node auditoria/evidencias/trace-decisoes.js"
   },
   "license": "MIT",
   "private": true,

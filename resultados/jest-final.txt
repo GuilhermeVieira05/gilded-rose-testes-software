@@ -1,0 +1,27 @@
+PASS test/jest/approvals.spec.ts
+PASS test/jest/suite-1-baseline.spec.ts
+PASS test/jest/suite-3-cot.spec.ts
+PASS test/jest/suite-2-persona.spec.ts
+FAIL test/jest/gilded-rose.spec.ts
+  ● Gilded Rose › should foo
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fixme"
+    Received: "foo"
+
+    [0m [90m  5 |[39m     [36mconst[39m gildedRose [33m=[39m [36mnew[39m [33mGildedRose[39m([[36mnew[39m [33mItem[39m([32m'foo'[39m[33m,[39m [35m0[39m[33m,[39m [35m0[39m)])[33m;[39m
+     [90m  6 |[39m     [36mconst[39m items [33m=[39m gildedRose[33m.[39mupdateQuality()[33m;[39m
+    [31m[1m>[22m[39m[90m  7 |[39m     expect(items[[35m0[39m][33m.[39mname)[33m.[39mtoBe([32m'fixme'[39m)[33m;[39m
+     [90m    |[39m                           [31m[1m^[22m[39m
+     [90m  8 |[39m   })[33m;[39m
+     [90m  9 |[39m })[33m;[39m
+     [90m 10 |[39m[0m
+
+      at Object.<anonymous> (test/jest/gilded-rose.spec.ts:7:27)
+
+Test Suites: 1 failed, 4 passed, 5 total
+Tests:       1 failed, 100 passed, 101 total
+Snapshots:   2 passed, 2 total
+Time:        3.749 s, estimated 7 s
+Ran all test suites.
